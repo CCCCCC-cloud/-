@@ -1,0 +1,53 @@
+
+# 系统配置文件
+# config/system_config.yaml
+
+# 串口通信设置
+serial:
+  port: "COM3"  # Windows: COM3, Linux: /dev/ttyUSB0, macOS: /dev/cu.usbserial-xxx
+  baudrate: 115200
+  timeout: 1.0
+  write_timeout: 1.0
+
+# 数据采集设置
+data_acquisition:
+  sampling_rate: 50  # Hz
+  buffer_size: 1000  # 数据点数
+
+# 通信协议设置
+protocol:
+  header: 0xAA
+  tail: 0x55
+  max_packet_size: 256
+  retry_count: 3
+  retry_delay: 0.05  # 秒
+
+# 日志设置
+logging:
+  enable: true
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: "logs/system.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+
+# 数据记录设置
+data_recording:
+  enable: true
+  directory: "data/raw"
+  file_format: "csv"  # csv, json
+  auto_save_interval: 60  # 秒
+
+# 安全限制
+safety:
+  max_force: 5.0  # N·m
+  min_force: 0.0  # N·m
+  force_spike_threshold: 5.0  # N·m/s
+  emergency_stop_threshold: 10.0  # N·m/s
+  timeout_duration: 30.0  # 秒
+
+# 显示设置
+display:
+  update_rate: 20  # Hz
+  plot_history: 1000  # 数据点数
+  auto_scroll: true
+  default_view: "force"  # force, position, velocity, all
