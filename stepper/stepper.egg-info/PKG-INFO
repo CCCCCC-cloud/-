@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: stepper
+Version: 0.1.0
+Summary: 自定义步进电机控制库
+Author: 你的名字
+Dynamic: author
+Dynamic: summary

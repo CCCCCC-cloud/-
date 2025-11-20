@@ -1,0 +1,23 @@
+motors:
+  motor1:
+    pulse_per_rev: 96000
+    divisor: 30
+  motor2:
+    pulse_per_rev: 160000
+    divisor: 50
+  motor3:
+    pulse_per_rev: 96000
+    divisor: 30
+  motor4:
+    pulse_per_rev: 96000
+    divisor: 30
+  motor5:
+    pulse_per_rev: 96000
+    divisor: 30
+  motor6:
+    pulse_per_rev: 96000
+    divisor: 30
+
+serial:
+  default_baudrate: 115200
+  timeout: 0.1
