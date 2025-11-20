@@ -1,47 +1,51 @@
-# Core dependencies for AdaptiveGraspControl Project (Stable Version)
-# Stage 0: Environment Setup and Basic Validation
+# 适用于AdaptiveGraspControl项目的核心依赖（稳定版本）
+# 第0阶段：环境设置和基本验证
 
-# Serial communication
+# 串行通信
 pyserial==3.5
 pyserial-asyncio==0.6
 
-# Data processing and scientific computing
+# 数据处理与科学计算
 numpy==1.24.3
 scipy==1.10.1
 pandas==2.0.3
 
-# Real-time data visualization
+# 实时数据可视化
 matplotlib==3.7.1
 pyqtgraph==0.13.3
 
-# GUI framework
+# 图形用户界面框架
 PyQt5==5.15.9
 PyQt5-Qt5==5.15.2
 PyQt5-sip==12.12.1
+PySide6==6.9.3
+PySide6_Addons==6.9.3
+PySide6_Essentials==6.9.3
+shiboken6==6.9.3
 
-# Configuration file processing
+# 配置文件处理
 pyyaml==6.0
 configparser==5.3.0
 
-# Logging and debugging
+# 日志记录和调试
 colorlog==6.7.0
 python-dotenv==1.0.0
 
-# Testing framework
+# 测试框架
 pytest==7.4.0
 pytest-cov==4.1.0
 pytest-timeout==2.1.0
 
-# Development tools (core only)
+# 开发工具（仅限核心）
 ipython==8.13.0
-black==23.3.0
+黑色==23.3.0
 flake8==6.0.0
 pylint==2.17.4
 
-# Performance analysis
+# 性能分析
 line-profiler==4.0.3
-memory-profiler==0.61.0
+内存分析器==0.61.0
 
-# Documentation generation (compatible versions)
+# 文档生成（兼容版本）
 sphinx==6.2.1
 sphinx-rtd-theme==1.2.2
