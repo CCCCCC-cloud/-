@@ -1,4 +1,4 @@
-# 适用于AdaptiveGraspControl项目的核心依赖（稳定版本）
+# 适用于AdaptiveGraspControl项目的核依赖（稳定版本）
 # 第0阶段：环境设置和基本验证
 
 # 串行通信
