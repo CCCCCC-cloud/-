@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="jykryarm">
+
+<link name="plate_link">
+  <visual>
+    <geometry>
+      <box size="0.15 0.15 0.04"/>
+    </geometry>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </visual>
+</link>
+<!--底座高度补偿-->
+<joint name="plate" type="fixed">
+  <parent link="plate_link"/>
+  <child link="base_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0.02"/>
+</joint>
+
+<link name="base_link">
+  <visual>
+    <geometry>
+      <mesh filename="meshes/BASE.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+</link>
+
+<link name="waist_link">
+  <visual>
+    <geometry>
+      <mesh filename="meshes/joint1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </visual>
+</link>
+<!-- 关节1 -->
+<joint name="base_to_waist" type="revolute">
+  <parent link="base_link"/>
+  <child link="waist_link"/>
+
+  <axis xyz="0 0 1"/><!-- 旋转轴沿z轴 -->
+  <origin rpy="0 0 1.57" xyz="0 0 0.097"/>
+  <limit effort="100" lower="-4.1888" upper="1.0472" velocity="50"/>
+</joint>
+
+<link name="shoulder_link">
+  <visual>
+    <geometry>
+      <mesh filename="meshes/joint2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </visual>
+</link>
+<!-- 关节2 -->
+<joint name="base_to_shoulder" type="revolute">
+  <parent link="waist_link"/>
+  <child link="shoulder_link"/>
+
+  <axis xyz="0 0 1"/><!-- 旋转轴沿z轴 -->
+  <origin rpy="1.57 1.57 3.1415926" xyz="0 -0.012 0.0645"/>
+  <limit effort="100" lower="-2.618" upper="0" velocity="50"/>
+</joint>
+
+<link name="shoulder1_link">
+  <visual>
+    <geometry>
+      <mesh filename="meshes/joint3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </visual>
+</link>
+<!-- 关节3 -->
+<joint name="shoulder_to_shoulder1" type="revolute">
+  <parent link="shoulder_link"/>
+  <child link="shoulder1_link"/>
+
+  <axis xyz="0 0 1"/><!-- 旋转轴沿z轴 -->
+  <origin rpy="0 0 -1.57" xyz="0 -0.170 0"/>
+  <limit effort="100" lower="0" upper="3.1415926" velocity="50"/>
+</joint>
+
+<link name="waist1_link">
+  <visual>
+    <geometry>
+      <mesh filename="meshes/joint4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </visual>
+</link>
+<!-- 关节4 -->
+<joint name="shoulder1_to_waist1" type="revolute">
+  <parent link="shoulder1_link"/>
+  <child link="waist1_link"/>
+
+  <axis xyz="0 0 1"/><!-- 旋转轴沿z轴 -->
+  <origin rpy="0 -1.57 0" xyz="-0.028 -0.070 0.012"/>
+  <limit effort="100" lower="-5.236" upper="0" velocity="50"/>
+</joint>
+
+<link name="shoulder3_link">
+  <visual>
+    <geometry>
+      <mesh filename="meshes/joint5.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </visual>
+</link>
+<!-- 关节5 -->
+<joint name="waist1_to_shoulder3" type="revolute">
+  <parent link="waist1_link"/>
+  <child link="shoulder3_link"/>
+
+  <axis xyz="0 0 1"/><!-- 旋转轴沿z轴 -->
+  <origin rpy="0 -1.57 0" xyz="0 0 0.090"/>
+  <limit effort="100" lower="-1.57" upper="1.57" velocity="50"/>
+</joint>
+
+<!-- 夹爪基座 -->
+<link name="gripper_base">
+  <visual>
+    <geometry>
+      <mesh filename="meshes/gripper.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </visual>
+</link>
+<!-- 夹爪 -->
+<joint name="endeffect" type="fixed">
+  <parent link="shoulder3_link"/>
+  <child link="gripper_base"/>
+  <origin rpy="0 1.57 0" xyz="0.090 0 0"/>
+</joint>
+
+<!--左边手指-->
+<link name="finger_left" >
+  <visual>
+    <geometry>
+      <mesh filename="meshes/left_finger.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </visual>
+</link>
+
+<joint name="finger_left_joint" type="revolute">
+  <parent link="gripper_base"/>
+  <child link="finger_left"/>
+  <axis xyz="0 0 1"/>  
+  <origin rpy="-1.57 0 0" xyz="-0.03 0 0.055035"/>
+  <limit lower="-1.0472" upper="0.5236" effort="10" velocity="0.0005"/>
+</joint>
+
+<!-- 右边手指 -->
+<link name="finger_right" >
+  <visual>
+    <geometry>
+      <mesh filename="meshes/right_finger.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </visual>
+</link>
+
+<joint name="finger_right_joint" type="revolute">
+  <parent link="gripper_base"/>
+  <child link="finger_right"/>
+  <axis xyz="0 0 1"/>  
+  <origin rpy="-1.57 0 0" xyz="0.03 0 0.055035"/>
+  <limit lower="-0.5236" upper="1.0472" effort="10" velocity="0.0005"/>
+
+  <!-- 关键：丝杆同步效果！-->
+  <mimic joint="finger_left_joint" multiplier="-1" offset="0"/>
+</joint>
